@@ -1,0 +1,45 @@
+<div ng-if="initForms" class="container">
+
+    <h1>Form Listesi</h1>
+    <br>
+    <br>
+    <br>
+    <input class="form-control" type="text" ng-model="search" placeholder="Form ismine göre ara" />
+    <br>
+    <!--Tabloda Görüntüleme -->
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Form İsmi</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Oluşturulma Tarihi</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="form in arrFormListAll | filter:search">
+                <th scope="row">{{$index+1}} -</th>
+                <td>{{form.name}}</td>
+                <td>{{form.description}}</td>
+                <td>{{form.createdAt}}</td>
+                <td><button ui-sref="forms({id:form.name})" ng-click="indexGonder($index)" class="btn btn-info">
+                        Görüntüle</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-if="!initForms">
+    <br>
+    <div class="alert alert-warning" style="text-align:center">
+        Görüntülenecek Formunuz bulunmamaktadır. Lütfen Aşağıdaki Butondan Ekleyiniz!.
+    </div>
+</div>
+<div class="container">
+    <button class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-xl" ng-click="modalOn()">Yeni Form
+        Eklemek İçin Tıklayınız ...</button>
+
+    <modal-directive class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    </modal-directive>
+</div>

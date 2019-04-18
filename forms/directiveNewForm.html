@@ -1,0 +1,66 @@
+<div class="modal-dialog modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Form Oluştur</h5>
+        </div>
+        <form name="formOlustur" ng-submit="formSubmit()">
+            <div class="form-group row">
+                <label for="formName" class="col-sm-2 col-form-label">Form name giriniz</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="titleForm.name" id="formName"
+                        placeholder="Test Forum" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="formDescription" class="col-sm-2 col-form-label">Kısa açıklama giriniz</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="formDescription" ng-model="titleForm.description"
+                        placeholder="Uye bilgi formu" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Field alanları</label>
+                <div class="col-sm-8">
+                    <hr>
+                </div>
+                <div class="col-1">
+                    <span ng-click="fieldSil()" class="btn btn-danger" style="cursor: pointer">Sil</span>
+                </div>
+                <div class="col-1">
+                    <span ng-click="fieldEkle()" class="btn btn-primary" style="cursor: pointer">Ekle</span>
+                </div>
+            </div>
+
+            <!-- Field Alanları -->
+            <ng-form name="fieldngForm">
+                <div class="form-group row" ng-repeat="count in countArray">
+                    <div class="col-sm-2 col-form-label">
+                    </div>
+                    <div class="col-sm-9 form-inline">
+                        <label class="col-form-label my-1 mr-sm-2">Field name giriniz :</label>
+                        <input type="text" class="form-control my-1 mr-sm-2" ng-model="fieldForm[$index].name"
+                            placeholder="name" required>
+                        <label class="my-1 mr-sm-2" for="inlineFormCustomSelectPref">Data tipi seçiniz
+                            ..</label>
+                        <select class="custom-select my-1 mr-sm-2" id="fieldCheckbox"
+                            ng-model="fieldForm[$index].dataType" required>
+                            <option selected value="">Choose...</option>
+                            <option value="STRING">STRING</option>
+                            <option value="NUMBER">NUMERIC</option>
+                        </select>
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            <input type="checkbox" class="custom-control-input"
+                                ng-init="fieldForm[$index].required=false" ng-model="fieldForm[$index].required"
+                                id="customCheck-{{count}}">
+                            <label class="custom-control-label" for="customCheck-{{count}}">required</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+                </div>
+            </ng-form>
+
+            <button type="submit" class="btn btn-primary" style="display: block; width: 100%;">Kaydet</button>
+        </form>
+    </div>
+</div>

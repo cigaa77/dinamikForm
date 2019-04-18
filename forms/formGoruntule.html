@@ -1,0 +1,28 @@
+<div ng-if="createFormJson.fields" class="container">
+    <h1>{{createFormJson.name}}</h1>
+    <h4>{{createFormJson.description}}</h4>
+    <h6>{{createFormJson.createdAt}}</h6>
+
+    <form ng-submit="goruntuleSubmit()">
+        <div class="form-group" ng-repeat="count in createFormJson.fields">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{count.name}}</label>
+                <div class="col-sm-10">
+                    <input placeholder="string" ng-if="count.dataType=='STRING'" type="text" class="form-control"
+                        id="formName" ng-required="count.required">
+                    <input placeholder="numeric" ng-if="count.dataType=='NUMBER'" type="number" class="form-control"
+                        id="formName" ng-required="count.required">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="display: block; width: 100%;"> Formu Gönder</button>
+    </form>
+</div>
+<div ng-if="!createFormJson.fields">
+    <br>
+    <div class="alert alert-warning" style="text-align:center">
+        Lütfen Form Yönetim sayfasından bir form seçiniz.
+    </div>
+    <button class="btn btn-primary" style="display: block; width: 100%;" ui-sref="formYonetim">Form Yönetime Gitmek İçin
+        Tıklayınız. </button>
+</div>
